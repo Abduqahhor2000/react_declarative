@@ -17,15 +17,15 @@ interface ITodoOnePageProps {
 }
 
 const fields: TypedField[] = [
-  {
-    type: FieldType.Line,
-    title: "System info",
-  },
+  // {
+  //   type: FieldType.Line,
+  //   title: "System info",
+  // },
   {
     type: FieldType.Div,
     style: {
       display: "grid",
-      gridTemplateColumns: "1fr auto",
+      gridTemplateColumns: "2fr auto",
     },
     fields: [
       {
@@ -34,7 +34,6 @@ const fields: TypedField[] = [
         title: "User id",
         outlined: false,
         disabled: true,
-
       },
       {
         type: FieldType.Checkbox,
