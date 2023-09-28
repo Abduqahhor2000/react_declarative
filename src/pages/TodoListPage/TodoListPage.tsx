@@ -37,21 +37,29 @@ const columns: IColumn[] = [
     field: "id",
     headerName: "ID",
     secondary: true,
-    width: () => 50,
+    width: () => 160,
   },
   {
     type: ColumnType.Text,
-    headerName: "Title",
+    headerName: "FirstName",
     primary: true,
-    field: "title",
-    width: (fullWidth) => Math.max(fullWidth - 350, 200),
+    field: "firstName",
+    width: () => 130,
   },
   {
-    type: ColumnType.CheckBox,
-    headerName: "Completed",
+    type: ColumnType.Text,
+    headerName: "LastName",
+    primary: true,
+    field: "lastName",
+    width: () => 130,
+  },
+  {
+    type: ColumnType.Action,
+    headerName: "Actions",
     primary: true,
     field: "completed",
-    width: () => 100,
+    width: () => 80,
+    
   },
   {
     type: ColumnType.Action,
@@ -107,6 +115,10 @@ export const TodoListPage = () => {
   const handleRowActionsClick = (action: string, row: any) => {
     alert(JSON.stringify({ row, action }, null, 2));
   };
+  // const handleColumnActionClick = (action: string, row: any, selectedRows: any[] ) => {
+  //   console.log(selectedRows);
+  //   alert(JSON.stringify({ row, action }, null, 2));
+  // };
 
   const handleAction = (action: string) => {
     alert(action);
@@ -126,6 +138,7 @@ export const TodoListPage = () => {
       filters={filters}
       columns={columns}
       handler={handler}
+      // onColumnAction={handleColumnActionClick}
       onRowAction={handleRowActionsClick}
       onRowClick={handleClick}
       onAction={handleAction}
