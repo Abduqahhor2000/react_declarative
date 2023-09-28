@@ -21,8 +21,8 @@ import useLoader from "../../hooks/useLoader";
 const filters: TypedField[] = [
   {
     type: FieldType.Text,
-    name: "title",
-    title: "Title",
+    name: "firstName",
+    title: "Search",
   },
   {
     type: FieldType.Checkbox,
@@ -52,14 +52,6 @@ const columns: IColumn[] = [
     primary: true,
     field: "lastName",
     width: () => 130,
-  },
-  {
-    type: ColumnType.Action,
-    headerName: "Actions",
-    primary: true,
-    field: "completed",
-    width: () => 80,
-    
   },
   {
     type: ColumnType.Action,
@@ -113,7 +105,8 @@ export const TodoListPage = () => {
   );
 
   const handleRowActionsClick = (action: string, row: any) => {
-    alert(JSON.stringify({ row, action }, null, 2));
+    // alert(JSON.stringify({ row, action }, null, 2));
+    fetchApi(`/users/${row.id}`, {method: "DELETE"})
   };
   // const handleColumnActionClick = (action: string, row: any, selectedRows: any[] ) => {
   //   console.log(selectedRows);
@@ -121,7 +114,9 @@ export const TodoListPage = () => {
   // };
 
   const handleAction = (action: string) => {
-    alert(action);
+    if("add-action" === action){
+      history.push(`/todos_list/add`);
+    }
   };
 
   const handleClick = (row: any) => {
@@ -130,7 +125,7 @@ export const TodoListPage = () => {
 
   return (
     <List
-      title="Todo list"
+      title="People"
       filterLabel="Filters"
       heightRequest={heightRequest}
       rowActions={rowActions}

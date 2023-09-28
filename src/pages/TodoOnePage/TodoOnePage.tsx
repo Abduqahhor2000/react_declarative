@@ -7,10 +7,10 @@ import {
   usePreventLeave,
 } from "react-declarative";
 
-import fetchApi from "../../helpers/fetchApi";
 import history from "../../helpers/history";
 
 import ITodoItem from "../../model/ITodoItem";
+import fetchApi from "../../helpers/fetchApi";
 
 interface ITodoOnePageProps {
   id: string;
@@ -55,13 +55,13 @@ const fields: TypedField[] = [
       {
         type: FieldType.Combo,
         title: "Sex",
-        name: "",
+        name: "sex",
         itemList: ["Male", "Female", "Other"],
       },
       {
         type: FieldType.Combo,
         title: "List",
-        name: "",
+        name: "list",
         itemList: ["Blocklist", "VIP", "Other people"],
       },
       {
@@ -209,7 +209,7 @@ export const TodoOnePage = ({ id }: ITodoOnePageProps) => {
     const { data, oneProps, beginSave } = usePreventLeave({
       history,
       onSave: () => {
-        alert(JSON.stringify(data, null, 2));
+        fetchApi(`/users/${data.id}`, {method: "PUT", body: JSON.stringify(data)})  
         return true;
       },
     });
